@@ -1,0 +1,6 @@
+# Use the following command the create the .env file:
+# cp dot_env_example .env
+
+CONTAINER_NAME=publication-date-updater
+PORT=8081
+APPLICATION_DIR=src
