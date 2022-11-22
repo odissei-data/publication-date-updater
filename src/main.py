@@ -1,7 +1,6 @@
 import json
-
 import requests
-from fastapi import FastAPI
+from fastapi import FastAPI, HTTPException
 from schema.input import UpdaterInput
 from version import get_version
 
@@ -24,4 +23,6 @@ async def update_publication_date(updater_input: UpdaterInput):
         "schema:datePublished": f'{updater_input.publication_date}',
         "@context": {"schema": "http://schema.org/"}}
     r = requests.post(url, data=json.dumps(publication_date), headers=headers)
+    if not r.ok:
+        raise HTTPException(status_code=r.status_code, detail=r.reason)
     return r.text
