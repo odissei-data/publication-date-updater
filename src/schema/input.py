@@ -8,5 +8,5 @@ class DataverseInformation(BaseModel):
 
 class UpdaterInput(BaseModel):
     pid: str = Field(example="doi:10.5072/FK2/1YCZOL")
-    publication_date: str = Field(example="2000-01-01")
+    publication_date: str = Field(example="2000-01-30")
     dataverse_information: DataverseInformation
