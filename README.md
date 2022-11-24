@@ -23,7 +23,7 @@ Returns the current version of the API
 
 ### Publication date updater
 Updates the publication date of a dataset and publishes it.
-####Parameters
+#### Parameters
 - base_url - e.g. _https://portal.odissei.nl/_ - The URL of the Dataverse instance.
 - api_token - e.g. _12345678-ab12-12ab-abcd-a1b2c3d4e5g6_ - API token of the specific Dataverse. (Login to the Dataverse instance as admin and click your username in the top right to find your token.)
 - pid - e.g. _doi:10.5072/FK2/1YCZOL_ - DOI or HANDLE permanently identifying the dataset.
