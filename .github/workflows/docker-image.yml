@@ -63,4 +63,4 @@ jobs:
       - name: Push to dockerhub
         run: |
           docker build . --file Dockerfile --tag fjodorvr/publication-date-updater:${{ env.version }}
-          docker push fjodorvr/microservices:${{ env.version }}
+          docker push fjodorvr/publication-date-updater:${{ env.version }}
