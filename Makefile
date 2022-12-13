@@ -41,4 +41,4 @@ version:  ## Export version
 	@docker cp ./pyproject.toml ${CONTAINER_NAME}:/src/stub.toml
 	@docker exec -it ${CONTAINER_NAME} python version.py
 tag:
-	@docker build . --file Dockerfile --tag fjodorvr/microservices:$(VERSION)
+	@docker build . --file Dockerfile --tag fjodorvr/publication-date-updater:$(VERSION)
