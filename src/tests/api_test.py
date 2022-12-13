@@ -8,8 +8,8 @@ def test_incorrect_publication_date():
     response = client.post(
         "/publication-date-updater",
         json={
-            "pid": "doi:10.5072/FK2/1YCZOL",
-            "publication_date": "today",
+            "pid": "doi:10.5072/FK2/DWYPWW",
+            "publication_date": "bad date",
             "dataverse_information": {
                 "base_url": "https://portal.staging.odissei.nl",
                 "api_token": "95ece972-6e98-4239-806e-f225bb6585aa"
@@ -17,7 +17,17 @@ def test_incorrect_publication_date():
         }
     )
     assert response.status_code == 400
-    assert response.json() == {'detail': 'Bad Request'}
+    assert response.json() == {'detail': {
+        'code': 400,
+        'message': 'Bad Request. The API request cannot be completed with '
+                   'the parameters supplied. Please check your code for '
+                   'typos, or consult our API guide at '
+                   'http://guides.dataverse.org.',
+        'requestMethod': 'POST',
+        'requestUrl': 'http://portal.staging.odissei.nl/api/v1/datasets/'
+                      ':persistentId/actions/:releasemigrated?persistentId='
+                      'doi:10.5072/FK2/DWYPWW',
+        'status': 'ERROR'}}
 
 
 def test_bad_token():
@@ -33,7 +43,8 @@ def test_bad_token():
         }
     )
     assert response.status_code == 401
-    assert response.json() == {'detail': 'Unauthorized'}
+    assert response.json() == {
+        'detail': {'message': 'Bad api key ', 'status': 'ERROR'}}
 
 
 def test_nonexistent_dataset():
@@ -49,4 +60,6 @@ def test_nonexistent_dataset():
         }
     )
     assert response.status_code == 404
-    assert response.json() == {'detail': 'Not Found'}
+    assert response.json() == {
+        'detail': {'message': 'Dataset with Persistent ID bad pid not found.',
+                   'status': 'ERROR'}}

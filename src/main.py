@@ -49,11 +49,13 @@ async def update_publication_date(updater_input: UpdaterInput):
     headers = {
         "X-Dataverse-key": updater_input.dataverse_information.api_token,
         'Content-Type': 'application/ld+json'}
-    url = f'{updater_input.dataverse_information.base_url}/api/datasets/:persistentId/actions/:releasemigrated?persistentId={updater_input.pid}'
+    url = f'{updater_input.dataverse_information.base_url}' \
+          f'/api/datasets/:persistentId/actions/:releasemigrated?' \
+          f'persistentId={updater_input.pid}'
     publication_date = {
         "schema:datePublished": f'{updater_input.publication_date}',
         "@context": {"schema": "http://schema.org/"}}
     r = requests.post(url, data=json.dumps(publication_date), headers=headers)
     if not r.ok:
-        raise HTTPException(status_code=r.status_code, detail=r.reason)
+        raise HTTPException(status_code=r.status_code, detail=r.json())
     return r.text
