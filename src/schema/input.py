@@ -2,7 +2,7 @@ from pydantic import BaseModel, Field
 
 
 class DataverseInformation(BaseModel):
-    base_url: str = Field(example="https://portal.odissei.nl/")
+    base_url: str = Field(example="https://portal.devstack.odissei.nl")
     api_token: str = Field(example="12345678-ab12-12ab-abcd-a1b2c3d4e5g6")
 
 

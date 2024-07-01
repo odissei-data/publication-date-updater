@@ -29,7 +29,7 @@ tags_metadata = [
 app = FastAPI(
     title="publication-date-updater",
     description=description,
-    version="0.1.0",
+    version="0.1.1",
     license_info={
         "name": "Apache 2.0",
         "url": "https://www.apache.org/licenses/LICENSE-2.0.html",
@@ -57,5 +57,5 @@ async def update_publication_date(updater_input: UpdaterInput):
         "@context": {"schema": "http://schema.org/"}}
     r = requests.post(url, data=json.dumps(publication_date), headers=headers)
     if not r.ok:
-        raise HTTPException(status_code=r.status_code, detail=r.json())
+        raise HTTPException(status_code=r.status_code, detail=r.text)
     return r.text
