@@ -1,4 +1,4 @@
-FROM python:3.9-slim
+FROM python:3.11-slim
 
 ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
@@ -13,5 +13,5 @@ WORKDIR src
 COPY src/ .
 COPY pyproject.toml ./stub.toml
 
-EXPOSE 7070
+EXPOSE 8081
 RUN pip install uvicorn
